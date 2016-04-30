@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Request","All possible wayland requests."],["ResourceParent",""]],"struct":[["RequestIterator",""]],"trait":[["IteratorDispatch",""]]});

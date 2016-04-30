@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Event","All possible wayland events."]],"fn":[["is_available","Checks if the wayland lib is available"]],"macro":[["wayland_env!","This macro allows you to create a simple wayland environment handler."]],"mod":[["cursor",""],["egl",""],["wayland","The core wayland protocol"]],"struct":[["EventIterator",""],["ProxyId",""]],"trait":[["Proxy",""]]});

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `WlPointer` struct in crate `wayland_server`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, WlPointer">
+
+    <title>wayland_server::wayland::seat::WlPointer - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>seat</a></p><script>window.sidebarCurrent = {name: 'WlPointer', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>seat</a>::<wbr><a class='struct' href=''>WlPointer</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2707' class='srclink' href='../../../src/wayland_server/home/travis/build/vberger/wayland-client-rs/target/debug/build/wayland-server-0ebbd292898e2b68/out/wayland_server_api.rs.html#2781-2785' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct WlPointer {
+    // some fields omitted
+}</pre><div class='docblock'><p>pointer input device</p>
+
+<p>The wl_pointer interface represents one or more input devices,
+such as mice, which control the pointer location and pointer_focus
+of a seat.</p>
+
+<p>The wl_pointer interface generates motion, enter and leave
+events for the surfaces that the pointer is located over,
+and button and axis events for button presses, button releases
+and scrolling.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h3><div class='impl-items'><h4 id='method.send_enter' class='method'><code>fn <a href='#method.send_enter' class='fnname'>send_enter</a>(&amp;self, serial: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, surface: &amp;<a class='struct' href='../../../wayland_server/wayland/compositor/struct.WlSurface.html' title='wayland_server::wayland::compositor::WlSurface'>WlSurface</a>, surface_x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, surface_y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<div class='docblock'><p>enter event</p>
+
+<p>Notification that this seat&#39;s pointer is focused on a certain
+surface.</p>
+
+<p>When an seat&#39;s focus enters a surface, the pointer image
+is undefined and a client should respond to this event by setting
+an appropriate pointer image with the set_cursor request.</p>
+</div><h4 id='method.send_leave' class='method'><code>fn <a href='#method.send_leave' class='fnname'>send_leave</a>(&amp;self, serial: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, surface: &amp;<a class='struct' href='../../../wayland_server/wayland/compositor/struct.WlSurface.html' title='wayland_server::wayland::compositor::WlSurface'>WlSurface</a>)</code></h4>
+<div class='docblock'><p>leave event</p>
+
+<p>Notification that this seat&#39;s pointer is no longer focused on
+a certain surface.</p>
+
+<p>The leave notification is sent before the enter notification
+for the new focus.</p>
+</div><h4 id='method.send_motion' class='method'><code>fn <a href='#method.send_motion' class='fnname'>send_motion</a>(&amp;self, time: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, surface_x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, surface_y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<div class='docblock'><p>pointer motion event</p>
+
+<p>Notification of pointer location change. The arguments
+surface_x and surface_y are the location relative to the
+focused surface.</p>
+</div><h4 id='method.send_button' class='method'><code>fn <a href='#method.send_button' class='fnname'>send_button</a>(&amp;self, serial: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, time: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, button: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, state: <a class='enum' href='../../../wayland_server/wayland/seat/enum.WlPointerButtonState.html' title='wayland_server::wayland::seat::WlPointerButtonState'>WlPointerButtonState</a>)</code></h4>
+<div class='docblock'><p>pointer button event</p>
+
+<p>Mouse button click and release notifications.</p>
+
+<p>The location of the click is given by the last motion or
+enter event.
+The time argument is a timestamp with millisecond
+granularity, with an undefined base.</p>
+</div><h4 id='method.send_axis' class='method'><code>fn <a href='#method.send_axis' class='fnname'>send_axis</a>(&amp;self, time: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, axis: <a class='enum' href='../../../wayland_server/wayland/seat/enum.WlPointerAxis.html' title='wayland_server::wayland::seat::WlPointerAxis'>WlPointerAxis</a>, value: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<div class='docblock'><p>axis event</p>
+
+<p>Scroll and other axis notifications.</p>
+
+<p>For scroll events (vertical and horizontal scroll axes), the
+value parameter is the length of a vector along the specified
+axis in a coordinate space identical to those of motion events,
+representing a relative movement along the specified axis.</p>
+
+<p>For devices that support movements non-parallel to axes multiple
+axis events will be emitted.</p>
+
+<p>When applicable, for example for touch pads, the server can
+choose to emit scroll events where the motion vector is
+equivalent to a motion event vector.</p>
+
+<p>When applicable, clients can transform its view relative to the
+scroll distance.</p>
+</div><h4 id='method.send_frame' class='method'><code>fn <a href='#method.send_frame' class='fnname'>send_frame</a>(&amp;self)</code></h4>
+<div class='docblock'><p>end of a pointer event sequence</p>
+
+<p>Indicates the end of a set of events that logically belong together.
+A client is expected to accumulate the data in all events within the
+frame before proceeding.</p>
+
+<p>All wl_pointer events before a wl_pointer.frame event belong
+logically together. For example, in a diagonal scroll motion the
+compositor will send an optional wl_pointer.axis_source event, two
+wl_pointer.axis events (horizontal and vertical) and finally a
+wl_pointer.frame event. The client may use this information to
+calculate a diagonal vector for scrolling.</p>
+
+<p>When multiple wl_pointer.axis events occur within the same frame,
+the motion vector is the combined motion of all events.
+When a wl_pointer.axis and a wl_pointer.axis_stop event occur within
+the same frame, this indicates that axis movement in one axis has
+stopped but continues in the other axis.
+When multiple wl_pointer.axis_stop events occur within in the same
+frame, this indicates that these axes stopped in the same instance.</p>
+
+<p>A wl_pointer.frame event is sent for every logical event group,
+even if the group only contains a single wl_pointer event.
+Specifically, a client may get a sequence: motion, frame, button,
+frame, axis, frame, axis_stop, frame.</p>
+
+<p>The wl_pointer.enter and wl_pointer.leave events are logical events
+generated by the compositor and not the hardware. These events are
+also grouped by a wl_pointer.frame. When a pointer moves from one
+surface to the another, a compositor should group the
+wl_pointer.leave event within the same wl_pointer.frame.
+However, a client must not rely on wl_pointer.leave and
+wl_pointer.enter being in the same wl_pointer.frame.
+Compositor-specific policies may require the wl_pointer.leave and
+wl_pointer.enter event being split across multiple wl_pointer.frame
+groups.</p>
+
+<p>Requires interface version <code>&gt;= 5</code>.</p>
+</div><h4 id='method.send_axis_source' class='method'><code>fn <a href='#method.send_axis_source' class='fnname'>send_axis_source</a>(&amp;self, axis_source: <a class='enum' href='../../../wayland_server/wayland/seat/enum.WlPointerAxisSource.html' title='wayland_server::wayland::seat::WlPointerAxisSource'>WlPointerAxisSource</a>)</code></h4>
+<div class='docblock'><p>axis source event</p>
+
+<p>Source information for scroll and other axes.</p>
+
+<p>This event does not occur on its own. It is sent before a
+wl_pointer.frame event and carries the source information for
+all events within that frame.</p>
+
+<p>The source specifies how this event was generated. If the source is
+wl_pointer.axis_source.finger, a wl_pointer.axis_stop event will be
+sent when the user lifts the finger off the device.</p>
+
+<p>If the source is wl_pointer axis_source.wheel or
+wl_pointer.axis_source.continuous, a wl_pointer.axis_stop event may
+or may not be sent. Whether a compositor sends a axis_stop event
+for these sources is hardware-specific and implementation-dependent;
+clients must not rely on receiving an axis_stop event for these
+scroll sources and should treat scroll sequences from these scroll
+sources as unterminated by default.</p>
+
+<p>This event is optional. If the source is unknown for a particular
+axis event sequence, no event is sent.
+Only one wl_pointer.axis_source event is permitted per frame.</p>
+
+<p>The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
+not guaranteed.</p>
+
+<p>Requires interface version <code>&gt;= 5</code>.</p>
+</div><h4 id='method.send_axis_stop' class='method'><code>fn <a href='#method.send_axis_stop' class='fnname'>send_axis_stop</a>(&amp;self, time: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, axis: <a class='enum' href='../../../wayland_server/wayland/seat/enum.WlPointerAxis.html' title='wayland_server::wayland::seat::WlPointerAxis'>WlPointerAxis</a>)</code></h4>
+<div class='docblock'><p>axis stop event</p>
+
+<p>Stop notification for scroll and other axes.</p>
+
+<p>For some wl_pointer.axis_source types, a wl_pointer.axis_stop event
+is sent to notify a client that the axis sequence has terminated.
+This enables the client to implement kinetic scrolling.
+See the wl_pointer.axis_source documentation for information on when
+this event may be generated.</p>
+
+<p>Any wl_pointer.axis events with the same axis_source after this
+event should be considered as the start of a new axis motion.</p>
+
+<p>The timestamp is to be interpreted identical to the timestamp in the
+wl_pointer.axis event. The timestamp value may be the same as a
+preceeding wl_pointer.axis event.</p>
+
+<p>Requires interface version <code>&gt;= 5</code>.</p>
+</div><h4 id='method.send_axis_discrete' class='method'><code>fn <a href='#method.send_axis_discrete' class='fnname'>send_axis_discrete</a>(&amp;self, axis: <a class='enum' href='../../../wayland_server/wayland/seat/enum.WlPointerAxis.html' title='wayland_server::wayland::seat::WlPointerAxis'>WlPointerAxis</a>, discrete: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>)</code></h4>
+<div class='docblock'><p>axis click event</p>
+
+<p>Discrete step information for scroll and other axes.</p>
+
+<p>This event carries the axis value of the wl_pointer.axis event in
+discrete steps (e.g. mouse wheel clicks).</p>
+
+<p>This event does not occur on its own, it is coupled with a
+wl_pointer.axis event that represents this axis value on a
+continuous scale. The protocol guarantees that each axis_discrete
+event is always followed by exactly one axis event with the same
+axis number within the same wl_pointer.frame. Note that the protocol
+allows for other events to occur between the axis_discrete and
+its coupled axis event, including other axis_discrete or axis
+events.</p>
+
+<p>This event is optional; continuous scrolling devices
+like two-finger scrolling on touchpads do not have discrete
+steps and do not generate this event.</p>
+
+<p>The discrete value carries the directional information. e.g. a value
+of -2 is two steps towards the negative direction of this axis.</p>
+
+<p>The axis number is identical to the axis number in the associate
+axis event.</p>
+
+<p>The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
+not guaranteed.</p>
+
+<p>Requires interface version <code>&gt;= 5</code>.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> for <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../../../wayland_server/trait.Resource.html' title='wayland_server::Resource'>Resource</a> for <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h3><div class='impl-items'><h4 id='method.ptr' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.ptr' class='fnname'>ptr</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../wayland_sys/server/enum.wl_resource.html' title='wayland_sys::server::wl_resource'>wl_resource</a></code></h4>
+<h4 id='method.interface' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.interface' class='fnname'>interface</a>() -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='struct' href='../../../wayland_sys/common/struct.wl_interface.html' title='wayland_sys::common::wl_interface'>wl_interface</a></code></h4>
+<h4 id='method.interface_name' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.interface_name' class='fnname'>interface_name</a>() -&gt; &amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
+<h4 id='method.max_version' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.max_version' class='fnname'>max_version</a>() -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<h4 id='method.bound_version' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.bound_version' class='fnname'>bound_version</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<h4 id='method.id' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.id' class='fnname'>id</a>(&amp;self) -&gt; <a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a></code></h4>
+<h4 id='method.client_id' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.client_id' class='fnname'>client_id</a>(&amp;self) -&gt; <a class='struct' href='../../../wayland_server/struct.ClientId.html' title='wayland_server::ClientId'>ClientId</a></code></h4>
+<h4 id='method.from_ptr' class='method'><code>unsafe fn <a href='../../../wayland_server/trait.Resource.html#method.from_ptr' class='fnname'>from_ptr</a>(ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../wayland_sys/server/enum.wl_resource.html' title='wayland_sys::server::wl_resource'>wl_resource</a>) -&gt; <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h4>
+<h4 id='method.from_ptr_no_own' class='method'><code>unsafe fn <a href='../../../wayland_server/trait.Resource.html#method.from_ptr_no_own' class='fnname'>from_ptr_no_own</a>(ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../wayland_sys/server/enum.wl_resource.html' title='wayland_sys::server::wl_resource'>wl_resource</a>) -&gt; <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h4>
+<h4 id='method.set_req_iterator' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.set_req_iterator' class='fnname'>set_req_iterator</a>(&amp;mut self, req: &amp;<a class='struct' href='../../../wayland_server/struct.RequestIterator.html' title='wayland_server::RequestIterator'>RequestIterator</a>)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>Error</a>&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../../wayland_server/wayland/seat/struct.WlPointer.html' title='wayland_server::wayland::seat::WlPointer'>WlPointer</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "wayland_server";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

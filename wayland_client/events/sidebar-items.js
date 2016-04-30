@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Event","All possible wayland events."]],"struct":[["EventIterator",""]]});

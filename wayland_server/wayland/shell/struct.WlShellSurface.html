@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `WlShellSurface` struct in crate `wayland_server`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, WlShellSurface">
+
+    <title>wayland_server::wayland::shell::WlShellSurface - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>shell</a></p><script>window.sidebarCurrent = {name: 'WlShellSurface', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>shell</a>::<wbr><a class='struct' href=''>WlShellSurface</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1665' class='srclink' href='../../../src/wayland_server/home/travis/build/vberger/wayland-client-rs/target/debug/build/wayland-server-0ebbd292898e2b68/out/wayland_server_api.rs.html#1718-1722' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct WlShellSurface {
+    // some fields omitted
+}</pre><div class='docblock'><p>desktop-style metadata interface</p>
+
+<p>An interface that may be implemented by a wl_surface, for
+implementations that provide a desktop-style user interface.</p>
+
+<p>It provides requests to treat surfaces like toplevel, fullscreen
+or popup windows, move, resize or maximize them, associate
+metadata like title and class, etc.</p>
+
+<p>On the server side the object is automatically destroyed when
+the related wl_surface is destroyed.  On client side,
+wl_shell_surface_destroy() must be called before destroying
+the wl_surface object.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h3><div class='impl-items'><h4 id='method.send_ping' class='method'><code>fn <a href='#method.send_ping' class='fnname'>send_ping</a>(&amp;self, serial: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>)</code></h4>
+<div class='docblock'><p>ping client</p>
+
+<p>Ping a client to check if it is receiving events and sending
+requests. A client is expected to reply with a pong request.</p>
+</div><h4 id='method.send_configure' class='method'><code>fn <a href='#method.send_configure' class='fnname'>send_configure</a>(&amp;self, edges: <a class='struct' href='../../../wayland_server/wayland/shell/WlShellSurfaceResize/struct.WlShellSurfaceResize.html' title='wayland_server::wayland::shell::WlShellSurfaceResize::WlShellSurfaceResize'>WlShellSurfaceResize</a>, width: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, height: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>)</code></h4>
+<div class='docblock'><p>suggest resize</p>
+
+<p>The configure event asks the client to resize its surface.</p>
+
+<p>The size is a hint, in the sense that the client is free to
+ignore it if it doesn&#39;t resize, pick a smaller size (to
+satisfy aspect ratio or resize in steps of NxM pixels).</p>
+
+<p>The edges parameter provides a hint about how the surface
+was resized. The client may use this information to decide
+how to adjust its content to the new size (e.g. a scrolling
+area might adjust its content position to leave the viewable
+content unmoved).</p>
+
+<p>The client is free to dismiss all but the last configure
+event it received.</p>
+
+<p>The width and height arguments specify the size of the window
+in surface local coordinates.</p>
+</div><h4 id='method.send_popup_done' class='method'><code>fn <a href='#method.send_popup_done' class='fnname'>send_popup_done</a>(&amp;self)</code></h4>
+<div class='docblock'><p>popup interaction is done</p>
+
+<p>The popup_done event is sent out when a popup grab is broken,
+that is, when the user clicks a surface that doesn&#39;t belong
+to the client owning the popup surface.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> for <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../../../wayland_server/trait.Resource.html' title='wayland_server::Resource'>Resource</a> for <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h3><div class='impl-items'><h4 id='method.ptr' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.ptr' class='fnname'>ptr</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../wayland_sys/server/enum.wl_resource.html' title='wayland_sys::server::wl_resource'>wl_resource</a></code></h4>
+<h4 id='method.interface' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.interface' class='fnname'>interface</a>() -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='struct' href='../../../wayland_sys/common/struct.wl_interface.html' title='wayland_sys::common::wl_interface'>wl_interface</a></code></h4>
+<h4 id='method.interface_name' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.interface_name' class='fnname'>interface_name</a>() -&gt; &amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
+<h4 id='method.max_version' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.max_version' class='fnname'>max_version</a>() -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<h4 id='method.bound_version' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.bound_version' class='fnname'>bound_version</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<h4 id='method.id' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.id' class='fnname'>id</a>(&amp;self) -&gt; <a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a></code></h4>
+<h4 id='method.client_id' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.client_id' class='fnname'>client_id</a>(&amp;self) -&gt; <a class='struct' href='../../../wayland_server/struct.ClientId.html' title='wayland_server::ClientId'>ClientId</a></code></h4>
+<h4 id='method.from_ptr' class='method'><code>unsafe fn <a href='../../../wayland_server/trait.Resource.html#method.from_ptr' class='fnname'>from_ptr</a>(ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../wayland_sys/server/enum.wl_resource.html' title='wayland_sys::server::wl_resource'>wl_resource</a>) -&gt; <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h4>
+<h4 id='method.from_ptr_no_own' class='method'><code>unsafe fn <a href='../../../wayland_server/trait.Resource.html#method.from_ptr_no_own' class='fnname'>from_ptr_no_own</a>(ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../../../wayland_sys/server/enum.wl_resource.html' title='wayland_sys::server::wl_resource'>wl_resource</a>) -&gt; <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h4>
+<h4 id='method.set_req_iterator' class='method'><code>fn <a href='../../../wayland_server/trait.Resource.html#method.set_req_iterator' class='fnname'>set_req_iterator</a>(&amp;mut self, req: &amp;<a class='struct' href='../../../wayland_server/struct.RequestIterator.html' title='wayland_server::RequestIterator'>RequestIterator</a>)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>Error</a>&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../../wayland_server/wayland/shell/struct.WlShellSurface.html' title='wayland_server::wayland::shell::WlShellSurface'>WlShellSurface</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "wayland_server";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

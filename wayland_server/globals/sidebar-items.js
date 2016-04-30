@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["GlobalInstance","All possible wayland global instances"]],"struct":[["Global",""],["GlobalId",""]],"trait":[["GlobalResource",""]]});

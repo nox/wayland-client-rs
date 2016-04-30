@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `WlShellSurfaceRequest` enum in crate `wayland_server`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, WlShellSurfaceRequest">
+
+    <title>wayland_server::wayland::shell::WlShellSurfaceRequest - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>shell</a></p><script>window.sidebarCurrent = {name: 'WlShellSurfaceRequest', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>shell</a>::<wbr><a class='enum' href=''>WlShellSurfaceRequest</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2143' class='srclink' href='../../../src/wayland_server/home/travis/build/vberger/wayland-client-rs/target/debug/build/wayland-server-0ebbd292898e2b68/out/wayland_server_api.rs.html#1832-1986' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum WlShellSurfaceRequest {
+    Pong(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+    Move(<a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+    Resize(<a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='struct' href='../../../wayland_server/wayland/shell/WlShellSurfaceResize/struct.WlShellSurfaceResize.html' title='wayland_server::wayland::shell::WlShellSurfaceResize::WlShellSurfaceResize'>WlShellSurfaceResize</a>),
+    SetToplevel,
+    SetTransient(<a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, <a class='struct' href='../../../wayland_server/wayland/shell/WlShellSurfaceTransient/struct.WlShellSurfaceTransient.html' title='wayland_server::wayland::shell::WlShellSurfaceTransient::WlShellSurfaceTransient'>WlShellSurfaceTransient</a>),
+    SetFullscreen(<a class='enum' href='../../../wayland_server/wayland/shell/enum.WlShellSurfaceFullscreenMethod.html' title='wayland_server::wayland::shell::WlShellSurfaceFullscreenMethod'>WlShellSurfaceFullscreenMethod</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>),
+    SetPopup(<a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, <a class='struct' href='../../../wayland_server/wayland/shell/WlShellSurfaceTransient/struct.WlShellSurfaceTransient.html' title='wayland_server::wayland::shell::WlShellSurfaceTransient::WlShellSurfaceTransient'>WlShellSurfaceTransient</a>),
+    SetMaximized(<a class='struct' href='../../../wayland_server/struct.ResourceId.html' title='wayland_server::ResourceId'>ResourceId</a>),
+    SetTitle(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    SetClass(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+}</pre><h2 class='variants'>Variants</h2>
+<table class='variants_table'><tr><td id='variant.Pong'><code>Pong</code></td><td><div class='docblock'><p>respond to a ping event</p>
+
+<p>A client must respond to a ping event with a pong request or
+the client may be deemed unresponsive.</p>
+
+<p>Values: serial,</p>
+</div></td><td></td></tr><tr><td id='variant.Move'><code>Move</code></td><td><div class='docblock'><p>start an interactive move</p>
+
+<p>Start a pointer-driven move of the surface.</p>
+
+<p>This request must be used in response to a button press event.
+The server may ignore move requests depending on the state of
+the surface (e.g. fullscreen or maximized).</p>
+
+<p>Values: seat, serial,</p>
+</div></td><td></td></tr><tr><td id='variant.Resize'><code>Resize</code></td><td><div class='docblock'><p>start an interactive resize</p>
+
+<p>Start a pointer-driven resizing of the surface.</p>
+
+<p>This request must be used in response to a button press event.
+The server may ignore resize requests depending on the state of
+the surface (e.g. fullscreen or maximized).</p>
+
+<p>Values: seat, serial, edges,</p>
+</div></td><td></td></tr><tr><td id='variant.SetToplevel'><code>SetToplevel</code></td><td><div class='docblock'><p>make the surface a toplevel surface</p>
+
+<p>Map the surface as a toplevel surface.</p>
+
+<p>A toplevel surface is not fullscreen, maximized or transient.</p>
+</div></td><td></td></tr><tr><td id='variant.SetTransient'><code>SetTransient</code></td><td><div class='docblock'><p>make the surface a transient surface</p>
+
+<p>Map the surface relative to an existing surface.</p>
+
+<p>The x and y arguments specify the locations of the upper left
+corner of the surface relative to the upper left corner of the
+parent surface, in surface local coordinates.</p>
+
+<p>The flags argument controls details of the transient behaviour.</p>
+
+<p>Values: parent, x, y, flags,</p>
+</div></td><td></td></tr><tr><td id='variant.SetFullscreen'><code>SetFullscreen</code></td><td><div class='docblock'><p>make the surface a fullscreen surface</p>
+
+<p>Map the surface as a fullscreen surface.</p>
+
+<p>If an output parameter is given then the surface will be made
+fullscreen on that output. If the client does not specify the
+output then the compositor will apply its policy - usually
+choosing the output on which the surface has the biggest surface
+area.</p>
+
+<p>The client may specify a method to resolve a size conflict
+between the output size and the surface size - this is provided
+through the method parameter.</p>
+
+<p>The framerate parameter is used only when the method is set
+to &quot;driver&quot;, to indicate the preferred framerate. A value of 0
+indicates that the app does not care about framerate.  The
+framerate is specified in mHz, that is framerate of 60000 is 60Hz.</p>
+
+<p>A method of &quot;scale&quot; or &quot;driver&quot; implies a scaling operation of
+the surface, either via a direct scaling operation or a change of
+the output mode. This will override any kind of output scaling, so
+that mapping a surface with a buffer size equal to the mode can
+fill the screen independent of buffer_scale.</p>
+
+<p>A method of &quot;fill&quot; means we don&#39;t scale up the buffer, however
+any output scale is applied. This means that you may run into
+an edge case where the application maps a buffer with the same
+size of the output mode but buffer_scale 1 (thus making a
+surface larger than the output). In this case it is allowed to
+downscale the results to fit the screen.</p>
+
+<p>The compositor must reply to this request with a configure event
+with the dimensions for the output on which the surface will
+be made fullscreen.</p>
+
+<p>Values: method, framerate, output,</p>
+</div></td><td></td></tr><tr><td id='variant.SetPopup'><code>SetPopup</code></td><td><div class='docblock'><p>make the surface a popup surface</p>
+
+<p>Map the surface as a popup.</p>
+
+<p>A popup surface is a transient surface with an added pointer
+grab.</p>
+
+<p>An existing implicit grab will be changed to owner-events mode,
+and the popup grab will continue after the implicit grab ends
+(i.e. releasing the mouse button does not cause the popup to
+be unmapped).</p>
+
+<p>The popup grab continues until the window is destroyed or a
+mouse button is pressed in any other clients window. A click
+in any of the clients surfaces is reported as normal, however,
+clicks in other clients surfaces will be discarded and trigger
+the callback.</p>
+
+<p>The x and y arguments specify the locations of the upper left
+corner of the surface relative to the upper left corner of the
+parent surface, in surface local coordinates.</p>
+
+<p>Values: seat, serial, parent, x, y, flags,</p>
+</div></td><td></td></tr><tr><td id='variant.SetMaximized'><code>SetMaximized</code></td><td><div class='docblock'><p>make the surface a maximized surface</p>
+
+<p>Map the surface as a maximized surface.</p>
+
+<p>If an output parameter is given then the surface will be
+maximized on that output. If the client does not specify the
+output then the compositor will apply its policy - usually
+choosing the output on which the surface has the biggest surface
+area.</p>
+
+<p>The compositor will reply with a configure event telling
+the expected new surface size. The operation is completed
+on the next buffer attach to this surface.</p>
+
+<p>A maximized surface typically fills the entire output it is
+bound to, except for desktop element such as panels. This is
+the main difference between a maximized shell surface and a
+fullscreen shell surface.</p>
+
+<p>The details depend on the compositor implementation.</p>
+
+<p>Values: output,</p>
+</div></td><td></td></tr><tr><td id='variant.SetTitle'><code>SetTitle</code></td><td><div class='docblock'><p>set surface title</p>
+
+<p>Set a short title for the surface.</p>
+
+<p>This string may be used to identify the surface in a task bar,
+window list, or other user interface elements provided by the
+compositor.</p>
+
+<p>The string must be encoded in UTF-8.</p>
+
+<p>Values: title,</p>
+</div></td><td></td></tr><tr><td id='variant.SetClass'><code>SetClass</code></td><td><div class='docblock'><p>set surface class</p>
+
+<p>Set a class for the surface.</p>
+
+<p>The surface class identifies the general class of applications
+to which the surface belongs. A common convention is to use the
+file name (or the full path if it is a non-standard location) of
+the application&#39;s .desktop file as the class.</p>
+
+<p>Values: class_,</p>
+</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../wayland_server/wayland/shell/enum.WlShellSurfaceRequest.html' title='wayland_server::wayland::shell::WlShellSurfaceRequest'>WlShellSurfaceRequest</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "wayland_server";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

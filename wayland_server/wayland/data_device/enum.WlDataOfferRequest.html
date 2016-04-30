@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `WlDataOfferRequest` enum in crate `wayland_server`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, WlDataOfferRequest">
+
+    <title>wayland_server::wayland::data_device::WlDataOfferRequest - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>data_device</a></p><script>window.sidebarCurrent = {name: 'WlDataOfferRequest', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>wayland_server</a>::<wbr><a href='../index.html'>wayland</a>::<wbr><a href='index.html'>data_device</a>::<wbr><a class='enum' href=''>WlDataOfferRequest</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1021' class='srclink' href='../../../src/wayland_server/home/travis/build/vberger/wayland-client-rs/target/debug/build/wayland-server-0ebbd292898e2b68/out/wayland_server_api.rs.html#791-885' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum WlDataOfferRequest {
+    Accept(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    Receive(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='type' href='https://doc.rust-lang.org/nightly/std/sys/ext/io/type.RawFd.html' title='std::sys::ext::io::RawFd'>RawFd</a>),
+    Destroy,
+    Finish,
+    SetActions(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+}</pre><h2 class='variants'>Variants</h2>
+<table class='variants_table'><tr><td id='variant.Accept'><code>Accept</code></td><td><div class='docblock'><p>accept one of the offered mime types</p>
+
+<p>Indicate that the client can accept the given mime type, or
+NULL for not accepted.</p>
+
+<p>For objects of version 2 or older, this request is used by the
+client to give feedback whether the client can receive the given
+mime type, or NULL if none is accepted; the feedback does not
+determine whether the drag-and-drop operation succeeds or not.</p>
+
+<p>For objects of version 3 or newer, this request determines the
+final result of the drag-and-drop operation. If the end result
+is that no mime types were accepted, the drag-and-drop operation
+will be cancelled and the corresponding drag source will receive
+wl_data_source.cancelled. Clients may still use this event in
+conjunction with wl_data_source.action for feedback.</p>
+
+<p>Values: serial, mime_type,</p>
+</div></td><td></td></tr><tr><td id='variant.Receive'><code>Receive</code></td><td><div class='docblock'><p>request that the data is transferred</p>
+
+<p>To transfer the offered data, the client issues this request
+and indicates the mime type it wants to receive.  The transfer
+happens through the passed file descriptor (typically created
+with the pipe system call).  The source client writes the data
+in the mime type representation requested and then closes the
+file descriptor.</p>
+
+<p>The receiving client reads from the read end of the pipe until
+EOF and then closes its end, at which point the transfer is
+complete.</p>
+
+<p>This request may happen multiple times for different mimetypes,
+both before and after wl_data_device.drop. Drag-and-drop destination
+clients may preemptively fetch data or examine it more closely to
+determine acceptance.</p>
+
+<p>Values: mime_type, fd,</p>
+</div></td><td></td></tr><tr><td id='variant.Destroy'><code>Destroy</code></td><td><div class='docblock'><p>destroy data offer</p>
+
+<p>Destroy the data offer.</p>
+</div></td><td></td></tr><tr><td id='variant.Finish'><code>Finish</code></td><td><div class='docblock'><p>the offer will no longer be used</p>
+
+<p>Notifies the compositor that the drag destination successfully
+finished the drag-and-drop operation.</p>
+
+<p>Upon receiving this request, the compositor will emit
+wl_data_source.dnd_finished on the drag source client.</p>
+
+<p>It is a client error to perform other requests than
+wl_data_offer.destroy after this one. It is also an error to perform
+this request after a NULL mime type has been set in
+wl_data_offer.accept or no action was received through
+wl_data_offer.action.</p>
+</div></td><td></td></tr><tr><td id='variant.SetActions'><code>SetActions</code></td><td><div class='docblock'><p>set the available/preferred drag-and-drop actions</p>
+
+<p>Sets the actions that the destination side client supports for
+this operation. This request may trigger the emission of
+wl_data_source.action and wl_data_offer.action events if the compositor
+need to change the selected action.</p>
+
+<p>This request can be called multiple times throughout the
+drag-and-drop operation, typically in response to wl_data_device.enter
+or wl_data_device.motion events.</p>
+
+<p>This request determines the final result of the drag-and-drop
+operation. If the end result is that no action is accepted,
+the drag source will receive wl_drag_source.cancelled.</p>
+
+<p>The dnd_actions argument must contain only values expressed in the
+wl_data_device_manager.dnd_actions enum, and the preferred_action
+argument must only contain one of those values set, otherwise it
+will result in a protocol error.</p>
+
+<p>While managing an &quot;ask&quot; action, the destination drag-and-drop client
+may perform further wl_data_offer.receive requests, and is expected
+to perform one last wl_data_offer.set_actions request with a preferred
+action other than &quot;ask&quot; (and optionally wl_data_offer.accept) before
+requesting wl_data_offer.finish, in order to convey the action selected
+by the user. If the preferred action is not in the
+wl_data_offer.source_actions mask, an error will be raised.</p>
+
+<p>If the &quot;ask&quot; action is dismissed (e.g. user cancellation), the client
+is expected to perform wl_data_offer.destroy right away.</p>
+
+<p>This request can only be made on drag-and-drop offers, a protocol error
+will be raised otherwise.</p>
+
+<p>Values: dnd_actions, preferred_action,</p>
+</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../wayland_server/wayland/data_device/enum.WlDataOfferRequest.html' title='wayland_server::wayland::data_device::WlDataOfferRequest'>WlDataOfferRequest</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "wayland_server";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>
